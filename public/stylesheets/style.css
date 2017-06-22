@@ -1,0 +1,26 @@
+.task,
+.item-star-priority {
+	font-size: 0;
+}
+
+.item-star-priority {
+	display: inline-block;
+}
+
+.item-text,
+.item-date,
+.item-star,
+.delete-item,
+.star,
+.remove-star,
+.add-star {
+	list-style: none;
+	display: inline-block;
+	vertical-align: top;
+	font-size: 14px;
+	padding-right: 5px;
+}
+
+.star {
+	font-size: 14px;
+}

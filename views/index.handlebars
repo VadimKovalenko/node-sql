@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+	<script
+	src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+	integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+	crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/style.css">
+	<link rel="shortcut icon" href="">
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h1>{{title}}</h1>
+		</div>
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add new Task</button>
+		<div class="panel panel-default" id="inner-content">
+			{{#each data}}
+			<ul class="task" id="task_{{creation_date}}">
+				<li class = "item-text">{{text}}</li>
+				<!--<li>{{status}}</li>-->
+				<li class = "item-date">{{date}}</li>
+				<!--<li class = "item-star"></li>-->
+				<li class = "item-star-priority">
+					<a class = "remove-star"><i class="glyphicon glyphicon-minus"></i></a>
+					<i class="star glyphicon glyphicon-star"></i>
+					<i class="star glyphicon glyphicon-star"></i>
+					<i class="star glyphicon glyphicon-star"></i>
+					<a class = "add-star"><i class="glyphicon glyphicon-plus"></i></a>
+				</li>
+				<li class = "delete-item"><button class = "removeData"><i class="glyphicon glyphicon-remove"></i></button></li>
+			</ul>	
+			{{/each}}
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Add new task</h4>
+	      </div>
+	      <div class="modal-body">
+			<form id="Form" action="">      
+		        <label for="text">Text</label>
+		        <input type="text" name="text">
+		        <br>	        
+		        <label for="star">Priority</label>
+		        <select name="star">
+		        	<option value="1">1</option>
+		        	<option value="2">2</option>
+		        	<option value="3">3</option>
+		        	<option value="4">4</option>
+		        	<option value="5">5</option>
+		        </select>
+		        <br>	        
+		        <label for="date">Date</label>
+		        <input type="date" name="date">
+		        <br>
+		        <input id="addData" type="submit" value="Add">
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script src="/javascript/main.js"></script>	
+</body>
+</html>
