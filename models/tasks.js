@@ -20,9 +20,10 @@ var Tasks = {
 	},
 
 	//Объедени эти запросы change и add_star
-	/*change: function(id, callback) {
-		pool.query('UPDATE tasks SET status = 1 WHERE ?', {ID: id}, callback);
-	},*/
+	update: function(id, stars, callback) {
+		console.log("Update star")
+		pool.query('UPDATE tasks SET ?', {star: stars}, 'WHERE ?', {ID: id}, callback);
+	},
 
 	del: function(id, callback) {
 		pool.query('DELETE FROM tasks WHERE ?', {creation_date: id}, callback);

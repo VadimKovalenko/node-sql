@@ -4,10 +4,17 @@ $(document).ready(function() {
 		//var val = JSON.stringify($("#Form :input").serializeArray());
 		$val = $("#Form").serializeArray();
 		//console.log($val);
+		$stars = ""
+		for ($i=1; $i<=$val[1].value; $i++) {
+			$stars +="A"
+		}
+
+		console.log($stars)
+
 		$data = {
 			//Need to be a better way to convert data from form to JSON
 			text: $val[0].value,
-			star: $val[1].value,
+			star: $stars,
 			date: $val[2].value
 		};
 		$.ajax({
@@ -44,7 +51,7 @@ $(document).ready(function() {
 	//Update priority AJAX
 	function updateStar(x) {
 		$.ajax({
-			type: "POST",
+			type: "PUT",
 			url: "/update",
 			datatype: "json",
 			data: {

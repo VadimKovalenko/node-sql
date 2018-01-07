@@ -42,6 +42,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 	res.render('index', {title: "Hello!"});
 })*/
 
+//Handlebars helpers
+handlebars.registerHelper("showStars", function(star) {
+	var stars = ''
+	for(var i=1; i<=star; i++) {
+		stars += "<i class='star glyphicon glyphicon-star'></i>"
+	}
+	return new handlebars.SafeString(stars)
+})
 
 //Controllers
 app.get('/', ctrls.index);

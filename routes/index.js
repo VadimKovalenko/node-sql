@@ -25,7 +25,7 @@ module.exports = {
 			});
 			//res.render нужно прописывать вне цикла, так как он должен один раз выполниться
 			res.render('index', {title: 'Todolist', data: data});
-			console.log("Main page rerendered. Result is ");
+			//console.log("Main page rerendered. Result is ", data);
 		});
 	},
 
