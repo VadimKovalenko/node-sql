@@ -54,7 +54,7 @@ handlebars.registerHelper("showStars", function(star) {
 //Controllers
 app.get('/', ctrls.index);
 app.post('/add', ctrls.add);
-app.post('/update', ctrls.update);
+app.put('/:id/update', ctrls.update);
 app.post('/del', ctrls.del);
 //app.post('/star', star);*/
 

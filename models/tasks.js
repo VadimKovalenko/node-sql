@@ -16,13 +16,13 @@ var Tasks = {
 
 	//Объедени эти запросы change и add_star
 	change: function(id, stars, callback) {
-		pool.query('UPDATE tasks SET ?', {star: stars}, 'WHERE ?', {ID: id}, callback);
+		pool.query('UPDATE tasks SET star = ? WHERE id = ?', [stars, id], callback);
 	},
 
 	//Объедени эти запросы change и add_star
 	update: function(id, stars, callback) {
-		console.log("Update star")
-		pool.query('UPDATE tasks SET ?', {star: stars}, 'WHERE ?', {ID: id}, callback);
+		console.log("Update star - ", id, stars)
+		pool.query('UPDATE tasks SET star = ? WHERE creation_date = ?', [stars, id], callback);
 	},
 
 	del: function(id, callback) {

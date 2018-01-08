@@ -46,7 +46,8 @@ module.exports = {
 
 	update: function(req, res, next) {
 		console.log("Update is invoked: " + JSON.stringify(req.body));
-		tasks.change(req.body.id, req.body.text, function(err) {
+		console.log("ID from URL ", req.params.id);
+		tasks.update(req.params.id, req.body.stars, function(err) {
 			var ret = {status: 'error'};
 			if (err != 'null') {
 				ret = {status: 'successful'};
@@ -54,6 +55,8 @@ module.exports = {
 			//Можем отдать аяксу, что данные успешно добавлены
 			res.json(ret);			
 		})
+
+
 		/*var msg = {text: "Update sendet to AJAX"};
 		res.send(req.body);*/
 	},

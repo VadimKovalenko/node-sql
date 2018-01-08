@@ -3,18 +3,10 @@ $(document).ready(function() {
 		event.preventDefault();
 		//var val = JSON.stringify($("#Form :input").serializeArray());
 		$val = $("#Form").serializeArray();
-		//console.log($val);
-		$stars = ""
-		for ($i=1; $i<=$val[1].value; $i++) {
-			$stars +="A"
-		}
-
-		console.log($stars)
-
 		$data = {
 			//Need to be a better way to convert data from form to JSON
 			text: $val[0].value,
-			star: $stars,
+			star: $val[1].value,
 			date: $val[2].value
 		};
 		$.ajax({
@@ -49,13 +41,13 @@ $(document).ready(function() {
 	}
 
 	//Update priority AJAX
-	function updateStar(x) {
+	function updateStar(id, stars) {
 		$.ajax({
 			type: "PUT",
-			url: "/update",
+			url: "/" + id + "/update",
 			datatype: "json",
 			data: {
-				"stars": x
+				"stars": stars
 			},
 			async: true,
 			success: function(result) {
@@ -68,20 +60,26 @@ $(document).ready(function() {
 	$(".add-star").click(function(e) {
 		e.preventDefault();
 		$stars = $( this ).parent().find( ".star" );
+		$id = $(this).parent().parent().attr("id");
+		//Cut unnecessary symbols from ID we taking from DOM
+		$id = $id.replace(/\D/g, '')
 		$stars.last().after("<i class='star glyphicon glyphicon-star'></i>");
 		$stars.length += 1;
 		console.log("Add star, current count of stars: " + $stars.length);
-		updateStar($stars.length);
+		updateStar($id, $stars.length);
 	});
 
 	//Remove Star
 	$(".remove-star").click(function(e) {
 		e.preventDefault();
 		$stars = $( this ).parent().find( ".star" );
+		$id = $(this).parent().parent().attr("id");
+		//Cut unnecessary symbols from ID we taking from DOM
+		$id = $id.replace(/\D/g, '');
 		$stars.last().remove();
 		$stars.length -= 1;
-		console.log("Remove star, current count of stars: " + $stars.length);
-		updateStar($stars.length);
+		console.log("Remove star, current count of stars: " + $stars.length + " with id " + $id);
+		updateStar($id, $stars.length);
 	});
 
 	//Remove Item
@@ -89,7 +87,7 @@ $(document).ready(function() {
 	$(document).on('click','.removeData', function(event) {
 		console.log("Clicked remove button");
 		event.preventDefault();
-		$id = $( this ).parent().parent().attr("id");
+		$id = $( this ).parent().parent().attr("id")
 		//Cut unnecessary symbols from ID we taking from DOM
 		$id = $id.replace(/\D/g, '');
 		console.log($id);
