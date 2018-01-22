@@ -1,19 +1,5 @@
 //CONTROLLERS
-
-/*var express = require('express');
-var router = express.Router();*/
 var tasks = require('../models/tasks');
-
-/*router.get('/', function(req, res, next) {
-	tasks.list(function(err, rows) {
-		format(rows, function(data) {
-			res.render('index', {title: 'Todolist', data: data});
-		});
-	});
-});*/
-
-
-//var Controllers = function() {
 
 module.exports = {
 
@@ -25,7 +11,6 @@ module.exports = {
 			});
 			//res.render нужно прописывать вне цикла, так как он должен один раз выполниться
 			res.render('index', {title: 'Todolist', data: data});
-			//console.log("Main page rerendered. Result is ", data);
 		});
 	},
 
@@ -55,10 +40,6 @@ module.exports = {
 			//Можем отдать аяксу, что данные успешно добавлены
 			res.json(ret);			
 		})
-
-
-		/*var msg = {text: "Update sendet to AJAX"};
-		res.send(req.body);*/
 	},
 
 
@@ -72,10 +53,6 @@ module.exports = {
 			res.json(ret);
 		});
 	}
-
-//}
-
-
 //Обработка просроченности даты задачи а также подготовка всех данных для отображении в представлении
 /*function format(rows, callback) {
 	var newRow = [];
@@ -94,6 +71,4 @@ module.exports = {
 	});
 	callback(newRow);//Попробуй вместо коллбек любое название функции
 };*/
-
-//Запиши все модули контроллеров сюда
 };

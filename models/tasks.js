@@ -14,15 +14,17 @@ var Tasks = {
 		pool.query('INSERT INTO tasks SET ?', {text: text, status: 0, date: date, star: star, creation_date: creation_date}, callback);
 	},
 
-	//Объедени эти запросы change и add_star
-	change: function(id, stars, callback) {
-		pool.query('UPDATE tasks SET star = ? WHERE id = ?', [stars, id], callback);
-	},
-
-	//Объедени эти запросы change и add_star
 	update: function(id, stars, callback) {
-		console.log("Update star - ", id, stars)
-		pool.query('UPDATE tasks SET star = ? WHERE creation_date = ?', [stars, id], callback);
+		var validStars;
+		/*Validate stars count on backend*/
+		if (stars > 5) {
+			validStars = 5	
+		} else if (stars < 1) {
+			validStars = 1
+		} else {
+			validStars = stars
+		}
+		pool.query('UPDATE tasks SET star = ? WHERE creation_date = ?', [validStars, id], callback);
 	},
 
 	del: function(id, callback) {

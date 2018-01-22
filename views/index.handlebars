@@ -12,10 +12,9 @@
 	integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
 	crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/stylesheets/style.css">
-	<link rel="shortcut icon" href="">
+	<link rel="shortcut icon" href="#">
 </head>
 <body>
 	<div class="container">
@@ -27,13 +26,11 @@
 			{{#each data}}
 			<ul class="task" id="task_{{creation_date}}">
 				<li class = "item-text">{{text}}</li>
-				<!--<li>{{status}}</li>-->
 				<li class = "item-date">{{date}}</li>
-				<!--<li class = "item-star"></li>-->
 				<li class = "item-star-priority">
-					<a class = "remove-star"><i class="glyphicon glyphicon-minus"></i></a>
+					{{removeStarsBtn star}}
 					{{showStars star}}
-					<a class = "add-star"><i class="glyphicon glyphicon-plus"></i></a>
+					{{addStarsBtn star}}
 				</li>
 				<li class = "delete-item"><button class = "removeData"><i class="glyphicon glyphicon-remove"></i></button></li>
 			</ul>	

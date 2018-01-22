@@ -1,10 +1,8 @@
 $(document).ready(function() {
 	$("#addData").click(function(event) {
 		event.preventDefault();
-		//var val = JSON.stringify($("#Form :input").serializeArray());
 		$val = $("#Form").serializeArray();
 		$data = {
-			//Need to be a better way to convert data from form to JSON
 			text: $val[0].value,
 			star: $val[1].value,
 			date: $val[2].value
@@ -32,7 +30,6 @@ $(document).ready(function() {
 			datatype: "text/html",
 			async: true,
 			success: function(result) {
-				console.log("Rerender");
 				//Grab the necessary part of whole page, and replece it dynamicly
 				var inner_content =  $(result).find("#inner-content");
 				$("#inner-content").replaceWith(inner_content);
@@ -59,26 +56,38 @@ $(document).ready(function() {
 	//Add Star
 	$(".add-star").click(function(e) {
 		e.preventDefault();
-		$stars = $( this ).parent().find( ".star" );
+		$stars = $(this).parent().find( ".star" );
 		$id = $(this).parent().parent().attr("id");
 		//Cut unnecessary symbols from ID we taking from DOM
 		$id = $id.replace(/\D/g, '')
 		$stars.last().after("<i class='star glyphicon glyphicon-star'></i>");
 		$stars.length += 1;
-		console.log("Add star, current count of stars: " + $stars.length);
+		if ($stars.length == 5) {
+			$(this).hide();
+			//$(this).find('.remove-star').detach()
+		}
+		if ($stars.length == 2 && $stars.length <= 5) {
+			$(this).siblings('.remove-star').show()
+		}
 		updateStar($id, $stars.length);
 	});
 
 	//Remove Star
 	$(".remove-star").click(function(e) {
 		e.preventDefault();
-		$stars = $( this ).parent().find( ".star" );
+		$stars = $(this).parent().find( ".star" );
 		$id = $(this).parent().parent().attr("id");
 		//Cut unnecessary symbols from ID we taking from DOM
 		$id = $id.replace(/\D/g, '');
 		$stars.last().remove();
 		$stars.length -= 1;
-		console.log("Remove star, current count of stars: " + $stars.length + " with id " + $id);
+		if ($stars.length == 1) {
+			$(this).hide();
+			$(this).siblings('.add-star').show()
+		}
+		if ($stars.length < 5) {
+			$(this).siblings('.add-star').show()
+		}
 		updateStar($id, $stars.length);
 	});
 
