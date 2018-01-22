@@ -54,8 +54,8 @@ $(document).ready(function() {
 	}	
 
 	//Add Star
-	$(".add-star").click(function(e) {
-		e.preventDefault();
+	$(document).on('click','.add-star', function(event) {
+		event.preventDefault();
 		$stars = $(this).parent().find( ".star" );
 		$id = $(this).parent().parent().attr("id");
 		//Cut unnecessary symbols from ID we taking from DOM
@@ -64,7 +64,6 @@ $(document).ready(function() {
 		$stars.length += 1;
 		if ($stars.length == 5) {
 			$(this).hide();
-			//$(this).find('.remove-star').detach()
 		}
 		if ($stars.length == 2 && $stars.length <= 5) {
 			$(this).siblings('.remove-star').show()
@@ -73,8 +72,8 @@ $(document).ready(function() {
 	});
 
 	//Remove Star
-	$(".remove-star").click(function(e) {
-		e.preventDefault();
+	$(document).on('click','.remove-star', function(event) {
+		event.preventDefault();
 		$stars = $(this).parent().find( ".star" );
 		$id = $(this).parent().parent().attr("id");
 		//Cut unnecessary symbols from ID we taking from DOM
@@ -94,12 +93,10 @@ $(document).ready(function() {
 	//Remove Item
 	//This is the way how to stick the events after reRendering, see the https://stackoverflow.com/questions/19149354/jquery-on-event-doesnt-work-after-jquery-replacewith
 	$(document).on('click','.removeData', function(event) {
-		console.log("Clicked remove button");
 		event.preventDefault();
 		$id = $( this ).parent().parent().attr("id")
 		//Cut unnecessary symbols from ID we taking from DOM
 		$id = $id.replace(/\D/g, '');
-		console.log($id);
 		$.ajax({
 			type: "POST",
 			url: "/del",
